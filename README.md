@@ -34,7 +34,7 @@ Every resource assumes real NICs, switches, and GPUs. See [Footnotes](#footnotes
 Read these in order.
 
 - [How to Think About GPUs](https://jax-ml.github.io/scaling-book/gpus/) - NVLink, NVSwitch, scale-out InfiniBand, and collective costs from the GPU's point of view.
-- [RDMA Aware Networks Programming User Manual](https://docs.nvidia.com/networking/display/rdmaawareprogrammingv17) - Verbs objects, queue pairs, memory registration, and transport types on NVIDIA NICs.
+- [RDMA Aware Networks Programming User Manual](https://networking-docs.nvidia.com/doca/archive/3-5-0/rdma-aware-networks-programming-guide) - Verbs objects, queue pairs, memory registration, and transport types on NVIDIA NICs.
 - [Design Guidelines for High Performance RDMA Systems](https://www.usenix.org/conference/atc16/technical-sessions/presentation/kalia) - How NIC caches, PCIe transactions, and verb choice decide RDMA throughput.
 - [GPUDirect RDMA](https://docs.nvidia.com/cuda/gpudirect-rdma/) - How a PCIe device reads and writes GPU memory directly, and what the driver must pin.
 - [RDMA over Commodity Ethernet at Scale](https://doi.org/10.1145/2934872.2934908) - RoCEv2 with PFC in a production datacenter, including deadlocks and pause storms.
