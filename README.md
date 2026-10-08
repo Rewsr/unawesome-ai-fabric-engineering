@@ -1,10 +1,12 @@
-# AI Fabric Engineering
+# Awesome AI Fabric Engineering [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-A curated resource list for GPU performance engineers moving into the network: RDMA, GPU-to-NIC data paths, collectives, transports, and AI cluster fabrics.
+> Networking that moves data between GPUs in AI clusters: RDMA, GPU-to-NIC data paths, collectives, transports, and cluster fabrics.
+
+Written for GPU performance engineers moving into the network.
 
 It assumes you already know GPU kernels, profiling, inference engines, and the basics of distributed inference. The list is ordered from one NIC to one GPU-NIC path, collectives, inference transfer, transports, and whole fabrics. Read **Start here** first. After that, use it as a reference.
 
-Every resource assumes real NICs, switches, and GPUs. See [Hardware policy](#hardware-policy).
+Every resource assumes real NICs, switches, and GPUs. See [Footnotes](#footnotes).
 
 ## Contents
 
@@ -26,21 +28,19 @@ Every resource assumes real NICs, switches, and GPUs. See [Hardware policy](#har
 - [8. Cloud fabrics](#8-cloud-fabrics)
 - [9. Operating fabrics at scale](#9-operating-fabrics-at-scale)
 - [Frontier](#frontier)
-- [Hardware policy](#hardware-policy)
-- [Source policy](#source-policy)
 
 ## Start here: the minimum mental model
 
 Read these in order.
 
-1. [How to Think About GPUs](https://jax-ml.github.io/scaling-book/gpus/) - NVLink, NVSwitch, scale-out InfiniBand, and collective costs from the GPU's point of view.
-2. [RDMA Aware Networks Programming User Manual](https://docs.nvidia.com/networking/display/rdmaawareprogrammingv17) - Verbs objects, queue pairs, memory registration, and transport types on NVIDIA NICs.
-3. [Design Guidelines for High Performance RDMA Systems](https://www.usenix.org/conference/atc16/technical-sessions/presentation/kalia) - How NIC caches, PCIe transactions, and verb choice decide RDMA throughput.
-4. [GPUDirect RDMA](https://docs.nvidia.com/cuda/gpudirect-rdma/) - How a PCIe device reads and writes GPU memory directly, and what the driver must pin.
-5. [RDMA over Commodity Ethernet at Scale](https://doi.org/10.1145/2934872.2934908) - RoCEv2 with PFC in a production datacenter, including deadlocks and pause storms.
-6. [RDMA over Ethernet for Distributed Training at Meta Scale](https://doi.org/10.1145/3651890.3672233) - A RoCE fabric built for AI training: topology, routing, and congestion choices.
-7. [Demystifying NCCL](https://arxiv.org/abs/2507.04786) - NCCL's protocols, channels, and ring and tree algorithms, measured.
-8. [NCCL performance methodology](https://github.com/NVIDIA/nccl-tests/blob/master/doc/PERFORMANCE.md) - Algorithm bandwidth versus bus bandwidth, and how to compare a collective against link speed.
+- [How to Think About GPUs](https://jax-ml.github.io/scaling-book/gpus/) - NVLink, NVSwitch, scale-out InfiniBand, and collective costs from the GPU's point of view.
+- [RDMA Aware Networks Programming User Manual](https://docs.nvidia.com/networking/display/rdmaawareprogrammingv17) - Verbs objects, queue pairs, memory registration, and transport types on NVIDIA NICs.
+- [Design Guidelines for High Performance RDMA Systems](https://www.usenix.org/conference/atc16/technical-sessions/presentation/kalia) - How NIC caches, PCIe transactions, and verb choice decide RDMA throughput.
+- [GPUDirect RDMA](https://docs.nvidia.com/cuda/gpudirect-rdma/) - How a PCIe device reads and writes GPU memory directly, and what the driver must pin.
+- [RDMA over Commodity Ethernet at Scale](https://doi.org/10.1145/2934872.2934908) - RoCEv2 with PFC in a production datacenter, including deadlocks and pause storms.
+- [RDMA over Ethernet for Distributed Training at Meta Scale](https://doi.org/10.1145/3651890.3672233) - A RoCE fabric built for AI training: topology, routing, and congestion choices.
+- [Demystifying NCCL](https://arxiv.org/abs/2507.04786) - NCCL's protocols, channels, and ring and tree algorithms, measured.
+- [NCCL performance methodology](https://github.com/NVIDIA/nccl-tests/blob/master/doc/PERFORMANCE.md) - Algorithm bandwidth versus bus bandwidth, and how to compare a collective against link speed.
 
 ## 1. RDMA fundamentals
 
@@ -70,7 +70,6 @@ Read these in order.
 
 ### GPUDirect and PCIe
 
-- [GPUDirect RDMA](https://docs.nvidia.com/cuda/gpudirect-rdma/) - Peer memory, pinning, and the driver interface for NIC access to GPU memory.
 - [Linux dma-buf](https://docs.kernel.org/driver-api/dma-buf.html) - The kernel buffer-sharing mechanism used to register GPU memory without a peer-memory module.
 - [PCI peer-to-peer DMA](https://docs.kernel.org/driver-api/pci/p2pdma.html) - Kernel support and constraints for device-to-device DMA across PCIe.
 - [NCCL troubleshooting](https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/troubleshooting.html) - PCI ACS, IOMMU, and platform settings that silently break or slow GPU-NIC paths.
@@ -172,11 +171,13 @@ Verified on **2026-10-05**. Kept separate from the core list because the evidenc
 - GPU-initiated networking on non-NVIDIA NICs.
 - KV-cache transfer across heterogeneous GPU fleets with measured tail latency.
 
-## Hardware policy
+## Footnotes
+
+### Hardware policy
 
 Every resource assumes real NICs, switches, and GPUs. Software RDMA emulation and network simulators are excluded: their numbers do not transfer, and they cannot exercise GPUDirect, NIC offloads, congestion control, or adaptive routing.
 
-## Source policy
+### Source policy
 
 A core source must be one of the following:
 
@@ -187,8 +188,6 @@ A core source must be one of the following:
 
 Performance claims need the NIC, switch, topology, message sizes, software versions, and baseline. Otherwise the number is omitted.
 
+## Contributing
+
 See [CONTRIBUTING.md](CONTRIBUTING.md) before proposing a resource. `python3 scripts/check_links.py` checks every link.
-
-## License
-
-MIT
