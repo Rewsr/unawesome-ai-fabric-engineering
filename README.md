@@ -1,4 +1,4 @@
-# Awesome AI Fabric Engineering [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+# Unawesome AI Fabric Engineering
 
 > Networking that moves data between GPUs in AI clusters: RDMA, GPU-to-NIC data paths, collectives, transports, and cluster fabrics.
 
